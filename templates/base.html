@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Панель управления {{ cfg.site_name }}</title>
+    <!-- Google Fonts: Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS 3 CDN -->
+    <style>
+        body {
+    text-align: center;
+}
+
+table.wrapper {
+    text-align: center;
+    border-collapse: collapse;
+    border: none;
+    margin: 0pt;
+    padding: 0pt;
+    width: 100%;
+}
+
+table.standings {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    font-family: serif;
+    max-width: 98vw;
+}
+
+
+p {
+    text-align: center;
+}
+
+small {
+    font-size: xx-small;
+}
+
+h2 {
+    font-family: helvetica;
+    font-size: large;
+    text-align: center;
+}
+
+h3 {
+    font-family: helvetica;
+    font-size: medium;
+}
+
+table {
+}
+
+th {
+    background-color: #aaaaff;
+
+}
+td {
+    background-color: #ccccff;
+
+}
+
+th.solved {
+    text-align: center;
+    width: 2em;
+}
+
+th.penalty {
+    text-align: center;
+    padding-right: 10pt;
+    width: 2em;
+}
+
+th.party {
+    text-align: left;
+    padding-left: 10pt;
+}
+
+td.stat {
+    text-align: right;
+    padding-right: 10pt;
+}
+
+th.rankl {
+    text-align: center;
+    padding-left: 10pt;
+    width: 5em;
+}
+
+th.problem {
+    text-align: center;
+    width: 2em;
+}
+
+td {
+    text-align: center;
+}
+
+td.solved {
+    text-align: right;
+}
+
+td.penalty {
+    text-align: right;
+    padding-right: 10pt;
+}
+
+td.ioiprob {
+    text-align: center;
+    padding-left: 5pt;
+    padding-right: 5pt;
+}
+
+td.party {
+    text-align: left;
+    padding-left: 10pt;
+}
+
+td.partyOther {
+    text-align: left;
+    padding-left: 10pt;
+    color: grey;
+}
+
+td.rankl {
+    text-align: right;
+    padding-left: 10pt;
+    padding-right: 10pt;
+}
+
+td.problem {
+    text-align: center;
+}
+
+b {
+    color: #c06060;
+    font-weight: normal;
+}
+
+i {
+    color: green;
+    font-style: normal;
+}
+
+em {
+    color: blue;
+    font-style: normal;
+    background: yellow;
+}
+
+u {
+    color: #406090;
+    font-style: normal;
+    text-decoration: none;
+}
+
+i.first-to-solve {
+    display: block;
+    background-color: #c0ffc0;
+    font-style: normal;
+}
+
+s {
+    font-style: normal;
+    text-decoration: none;
+    font-size: x-small;
+}
+
+.row-win-0 { background-color: #fff1bc; }
+.row-win-1 { background-color: #fffbea; }
+.row-prize-0 { background-color: #e4f8f3; }
+.row-prize-1 { background-color: #f5ffff; }
+.row-selected-0 { background-color: #c8e8f8; }
+.row-selected-1 { background-color: #d0f0ff; }
+
+.row00 { background-color: #f8f8f8; }
+.row01 { background-color: #ffffff; }
+.row10 { background-color: #c8e8f8; }
+.row11 { background-color: #d0f0ff; }
+
+.standings > thead { border-bottom: solid 1px silver; }
+.standings > tfoot { border-top:    solid 1px silver; }
+
+
+span.winner {
+    border-radius: 5px;
+    padding-left: 5pt;
+    padding-right: 5pt;
+    margin-left: 2pt;
+    margin-right: 2pt;
+    background: #FFFACD;
+}
+
+
+span.award {
+    border-radius: 5px;
+    padding-left: 5pt;
+    padding-right: 5pt;
+    margin-left: 2pt;
+    margin-right: 2pt;
+    background: #E6E6FA;
+}
+
+
+span.award3 {
+    border-radius: 5px;
+    padding-left: 5pt;
+    padding-right: 5pt;
+    margin-left: 2pt;
+    margin-right: 2pt;
+    background: #FADDB1;
+}
+
+
+span.awardRC {
+    border-radius: 5px;
+    padding-left: 5pt;
+    padding-right: 5pt;
+    margin-left: 2pt;
+    margin-right: 2pt;
+    background: #CEFFD0;
+}
+
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        display: ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .font-display {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-[#F8FAFC]">
+
+    <!-- Global Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand logo -->
+                <div class="flex items-center">
+                    <a href="{{ url_for('index') }}" class="flex items-center space-x-2">
+                        <span class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-display font-bold text-lg">{{ cfg.site_name[0] }}</span>
+                        <span class="font-display font-bold tracking-tight text-xl text-neutral-900">{{ cfg.site_name }}<span class="text-neutral-500 font-normal text-sm ml-1">v1.0</span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer helper (for desktop demo fallback) -->
+    <div class="md:hidden border-b border-neutral-200 bg-neutral-50 px-4 py-2 flex items-center justify-around text-xs font-semibold">
+        <a href="{{ url_for('catalog') }}" class="text-neutral-600">Все результаты</a>
+    </div>
+
+    <!-- Alert / Flashed Messages Wrapper -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 w-full">
+                {% for category, message in messages %}
+                    <div class="p-4 rounded-lg flex items-start justify-between border shadow-sm transition-opacity duration-300 {% if category == 'success' %}bg-green-50 border-green-200 text-green-800{% elif category == 'error' %}bg-red-50 border-red-200 text-red-800{% elif category == 'info' %}bg-blue-50 border-blue-200 text-blue-800{% else %}bg-neutral-50 border-neutral-200 text-neutral-800{% endif %}" id="flash-message-{{ loop.index }}">
+                        <div class="flex items-center space-x-2">
+                            <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.041.02a.75.75 0 01-1.063-.852zM12 5.25a.75.75 0 100-1.5.75.75 0 000 1.5zm0 14.25a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                            </svg>
+                            <span class="text-sm font-medium">{{ message }}</span>
+                        </div>
+                        <button onclick="document.getElementById('flash-message-{{ loop.index }}').remove()" class="text-neutral-400 hover:text-neutral-800 ml-4 focus:outline-none">
+                            <span class="text-lg font-bold">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

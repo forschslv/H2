@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Добро пожаловать на таблицу результатов{% endblock %}
+
+{% block content %}
+<!-- Executive UI Hero Section -->
+<section class="relative bg-white border-b border-neutral-100 overflow-hidden py-20 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+            
+            <!-- Left Grid: Text Headlines & Actions -->
+            <div class="col-span-12 lg:col-span-7 space-y-6 text-left">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
+                    🚀 MVP-песочница для хакатона готова
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-display font-extrabold tracking-tight text-neutral-900 leading-none">
+                    Участвуйте в торговле <br>
+                    <span class="text-neutral-500">для разработчиков.</span>
+                </h1>
+                <p class="text-lg text-neutral-600 max-w-xl">
+                    Размещение аппаратных компонентов, премиум API-пакетов спонсоров и индивидуальных конфигураций для хакеров на нашей безопасной встроенной архитектуре SQLite.
+                </p>
+
+
+                        <a href="{{ url_for('catalog') }}" class="px-5 py-3 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition-transform active:scale-95">
+                            Перейти к каталогу
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Active Categories Grid Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center max-w-xl mx-auto mb-12">
+        <h2 class="text-3xl font-display font-bold text-neutral-900">Предустановленные категории</h2>
+        <p class="text-sm text-neutral-500 mt-2">15 преднастроенных продуктов, разделенных на три сферы, оптимизированных для тестирования и судейства.</p>
+    </div>
+
+    <!-- 3-column Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% for cat in categories %}
+            <div class="border border-neutral-200 rounded-2xl bg-white p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold mb-4 font-display">
+                        {% if 'Hard' in cat %}<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.827m11.379-8.16l1.15-.827M8.14 21.27l.707-1.03m7.45-.808l.707-1.03M12 3v1.5m0 15V21" /></svg>
+                        {% elif 'API' in cat %}<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
+                        {% else %}<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.99l1.005.831a1.125 1.125 0 0 1 .26 1.43l-1.297 2.247a1.125 1.125 0 0 1-1.37.491l-1.216-.456c-.356-.133-.751-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.83c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.83a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+                        {% endif %}
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-neutral-900 mb-2">
+                        {% if 'Hard' in cat %}Аппаратное обеспечение{% elif 'API' in cat %}Услуги и API{% else %}Учетные записи хакеров{% endif %}
+                    </h3>
+                    <p class="text-sm text-neutral-500 mb-6 font-sans">Исследуйте компоненты, настройки и атрибуты, оптимизированные для этого сектора.</p>
+                </div>
+                <a href="{{ url_for('catalog', category=cat) }}" class="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-700">
+                    Перейти в категорию &rarr;
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Featured Core Products Selection -->
+<section class="bg-neutral-100 border-t border-b border-neutral-200 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-10">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-neutral-900 tracking-tight">Лучшие предложения недели</h2>
+                <p class="text-sm text-neutral-500 mt-1">Взгляните на демонстрационные товары, загруженные во встроенную базу данных SQLite.</p>
+            </div>
+            <a href="{{ url_for('catalog') }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-700">Посмотреть все &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- Standard Hackathon Test Guidelines -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-neutral-900 text-white rounded-2xl p-8 sm:p-12 relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between shadow-lg">
+        <div class="space-y-4 max-w-xl">
+            <span class="text-xs font-semibold tracking-wider uppercase font-mono text-neutral-400">Шпаргалка для тестирования</span>
+            <h3 class="text-2xl sm:text-3xl font-display font-bold">Быстрый доступ ко всем трем кабинетам</h3>
+            <p class="text-sm text-neutral-300 leading-relaxed">Мы подготовили несколько типов пользователей во встроенной SQLite. Для входа введите пароль <strong class="text-white font-mono bg-neutral-800 px-1 py-0.5 rounded">12345678A</strong> и мгновенно получите динамический OTP-код из логов терминала сервера.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2">
+                <div class="bg-neutral-800 p-2.5 rounded-lg border border-neutral-700">
+                    <span class="block text-xs font-bold text-rose-400 font-display">1. Администратор</span>
+                    <span class="block text-xs font-mono text-neutral-400 mt-0.5">admin@marketplace.com</span>
+                </div>
+                <div class="bg-neutral-800 p-2.5 rounded-lg border border-neutral-700">
+                    <span class="block text-xs font-bold text-indigo-400 font-display">2. Продавец</span>
+                    <span class="block text-xs font-mono text-neutral-400 mt-0.5">seller@marketplace.com</span>
+                </div>
+                <div class="bg-neutral-800 p-2.5 rounded-lg border border-neutral-700">
+                    <span class="block text-xs font-bold text-green-400 font-display">3. Покупатель</span>
+                    <span class="block text-xs font-mono text-neutral-400 mt-0.5">buyer@marketplace.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
