@@ -40,6 +40,17 @@ def get_stat_by_tt(tour, typee: Literal['winners', 'half-winners', 'all-winners'
     else:
         print(f'\033[101m{tour= } | {typee= }\033[0m')
         stat = {}
-    return pd.DataFrame({i: [stat[i]] for i in stat})
+    return stat
+
+def render_table_stat(data: dict):
+    table = '<table>'
+    head = '<thead><tr><th>Регион</th><th>Количество</th></tr></thead>'
+    body = '<tbody>'
+    for k,v in data.items():
+        row_html = f'<tr><td>{k}</td><td>{v}</td></tr>\n'
+        body += row_html
+    body += '</tbody>'
+    table += head + body + '</table>'
+    return table
 if __name__ == '__main__':
     print(get_stat_by_tt(1, 'all'))
