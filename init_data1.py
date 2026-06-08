@@ -69,3 +69,9 @@ def render_table(tour, time):
     data = get_data_by_time(tour, time)
     return render_table_by_df(data)
 # print(get_data_by_time(120))
+
+
+moscow = pd.read_csv("Материалы/Результаты регионального этапа в Москве.csv")
+piter = pd.read_csv("Материалы/Результаты регионального этапа в Санкт-Петербурге.csv")
+def get_school(fio):
+    ...
