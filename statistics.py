@@ -44,10 +44,12 @@ def get_stat_by_tt(tour, typee: Literal['winners', 'half-winners', 'all-winners'
 
 def render_table_stat(data: dict):
     table = '<table>'
-    head = '<thead><tr><th>Регион</th><th>Количество</th></tr></thead>'
+    head = '<thead><tr><th>Место</th><th>Регион</th><th>Количество</th></tr></thead>'
     body = '<tbody>'
-    for k,v in data.items():
-        row_html = f'<tr><td>{k}</td><td>{v}</td></tr>\n'
+    i = 1
+    for k,v in sorted(data.items(), key=lambda x: (-x[1], x[0])):
+        row_html = f'<tr><td>{i}</td><td>{k}</td><td>{v}</td></tr>\n'
+        i += 1
         body += row_html
     body += '</tbody>'
     table += head + body + '</table>'
