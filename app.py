@@ -67,6 +67,9 @@ def possible(fs=None):
 @app.route("/")
 def index():
     return flask.render_template("index.html")
+@app.route("/reg_rat")
+def reg_rat():
+    return flask.render_template("reg_rat.html")
 APP_SETTINGS = {
     "site_name": "ХАКАТОН",
     "currency_symbol": "ERROR",
