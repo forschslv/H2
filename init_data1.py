@@ -1,3 +1,6 @@
+from collections import Counter
+from typing import Literal
+
 import pandas as pd
 from bs4 import BeautifulSoup
 
@@ -71,8 +74,57 @@ def render_table(tour, time):
 # print(get_data_by_time(120))
 
 
-moscow = pd.read_csv("Материалы/Результаты регионального этапа в Москве.csv", encoding = 'windows-1251')
-piter = pd.read_csv("Материалы/Результаты регионального этапа в Санкт-Петербурге.csv", encoding = 'windows-1251')
-def get_school(fio):
-    ...
-print(moscow)
+moscow = pd.read_csv("Материалы/Результаты регионального этапа в Москве.csv", sep=';', encoding = 'windows-1251')
+piter = pd.read_csv("Материалы/Результаты регионального этапа в Санкт-Петербурге.csv", sep=';', encoding = 'windows-1251')
+def render_table_reg(typee: Literal['winners', 'half-winners', 'all-winners', 'all', 'participants']):
+    print(typee)
+    data = moscow[["Школа"]]
+
+    if typee == 'all':
+        stat = dict(Counter(data['Школа'].to_list()))
+    elif typee == 'winners':
+        idxmax = int(len(data) * 0.08)
+        stat = {}
+        cnt = 1
+        for idx, i in data.iterrows():
+            if cnt > idxmax:
+                break
+            cnt += 1
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    elif typee == 'all-winners':
+        idxmax = int(len(data) * 0.45)
+        stat = {}
+        cnt = 1
+        for idx, i in data.iterrows():
+            if cnt > idxmax:
+                break
+            cnt += 1
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    elif typee == 'half-winners':
+        idxskip = int(len(data) * 0.08)
+        idxmax = int(len(data) * 0.45)
+        stat = {}
+        cnt = 0
+        for idx, i in data.iterrows():
+            cnt += 1
+            if cnt > idxmax:
+                break
+            if cnt <= idxskip:
+                continue
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    elif typee == 'participants':
+        cnt = 0
+        idxskip = int(len(data) * 0.45)
+        stat = {}
+        for idx, i in data.iterrows():
+            cnt += 1
+            if cnt <= idxskip:
+                continue
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    else:
+        print(f'\033[101m{typee= }\033[0m')
+        stat = {}
+    print(stat)
+    return stat
+
+print(moscow.columns)
