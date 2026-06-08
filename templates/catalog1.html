@@ -46,68 +46,91 @@
 
 
         <!-- Filter bar / search + sort values -->
-        <div class="mt-6 bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-            <form action="{{ url_for('catalog1') }}" method="GET" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <h1 class="text-3xl font-display font-extrabold tracking-tight text-neutral-900">Сортировать по</h1>
+            <div class="mt-6 bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
+                <a href="{{ url_for('catalog3') }}" class=" top-0 px-5 py-3 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition-transform active:scale-95; transform: translate(-5000px, -50px); ">
 
-                <!-- Category Select Filter (Keep active_category persistent) -->
-                <div class="col-span-1 md:col-span-3">
-                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Тур</label>
-                    <select id="category" name="category" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <!--<option value="">Номер тура-->
-                        </option>
-                        {% for cat in ["Первый тур", "Второй тур"] %}
-                            <option value="{{ cat }}" {% if active_category == cat %}selected{% endif %}>
-                                {{cat}}
-                            </option>
-                        {% endfor %}
-                    </select>
-                </div>
-<!--                &lt;!&ndash; time Select Filter (Keep active_category persistent) &ndash;&gt;-->
+                            Перейти к результатам
+                        </a>
+                <a href="{{ url_for('catalog3') }}" class=" top-0 px-5 py-3 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition-transform active:scale-95; transform: translate(-5000px, -50px); ">
+
+                            Перейти к результатам
+                        </a>
+                <a href="{{ url_for('catalog3') }}" class=" top-0 px-5 py-3 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition-transform active:scale-95; transform: translate(-5000px, -50px); ">
+
+                            Перейти к результатам
+                        </a>
+                <a href="{{ url_for('catalog3') }}" class=" top-0 px-5 py-3 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition-transform active:scale-95; transform: translate(-5000px, -50px); ">
+
+                            Перейти к результатам
+                        </a>
+            </div>
+<!--        <div class="mt-6 bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">-->
+<!--            <form action="{{ url_for('catalog1') }}" method="GET" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">-->
+
+<!--                &lt;!&ndash; Category Select Filter (Keep active_category persistent) &ndash;&gt;-->
+<!--                <a href="{{ url_for('catalog3') }}" class=" top-0 px-5 py-3 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition-transform active:scale-95; transform: translate(-5000px, -50px); ">-->
+
+<!--                            Перейти к результатам-->
+<!--                        </a>-->
+<!--&lt;!&ndash;                <div class="col-span-1 md:col-span-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Тур</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <select id="category" name="category" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash;<option value="">Номер тура&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        {% for cat in ["Первый тур", "Второй тур"] %}&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="{{ cat }}" {% if active_category == cat %}selected{% endif %}>&ndash;&gt;-->
+<!--&lt;!&ndash;                                {{cat}}&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        {% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;                    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                &lt;!&ndash; time Select Filter (Keep active_category persistent) &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-span-1 md:col-span-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Тур</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <select name="category" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash;<option value="">время тура&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        {% for cat in ["Первый тур", "Второй тур"] %}&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="{{ cat }}" {% if active_category == cat %}selected{% endif %}>&ndash;&gt;-->
+<!--&lt;!&ndash;                                {{cat}}&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        {% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;                    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--                &lt;!&ndash; Text Search block &ndash;&gt;-->
+<!--                <div class="col-span-1 md:col-span-4">-->
+<!--                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Поисковый запрос</label>-->
+<!--                    <input type="text" name="q1" value="{{ search_query }}" placeholder="Фёдоров Кирилл Евгениевич" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500 pl-3">-->
+<!--                </div>&lt;!&ndash; Text Search block &ndash;&gt;-->
+<!--                <div id='time' class="col-span-1 md:col-span-4">-->
+<!--                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Время</label>-->
+<!--                    <input type="text" name="q" value="{{ search_query }}" placeholder="0" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500 pl-3">-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Sorting Criteria &ndash;&gt;-->
 <!--                <div class="col-span-1 md:col-span-3">-->
-<!--                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Тур</label>-->
-<!--                    <select name="category" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">-->
-<!--                        &lt;!&ndash;<option value="">время тура&ndash;&gt;-->
-<!--                        </option>-->
-<!--                        {% for cat in ["Первый тур", "Второй тур"] %}-->
-<!--                            <option value="{{ cat }}" {% if active_category == cat %}selected{% endif %}>-->
-<!--                                {{cat}}-->
-<!--                            </option>-->
-<!--                        {% endfor %}-->
+<!--                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Сортировка</label>-->
+<!--                    <select name="sort" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">-->
+<!--                        <option value="default" {% if sort_by == 'default' or not sort_by %}selected{% endif %}>Все участники</option>-->
+<!--                        <option value="11" {% if sort_by == '11' %}selected{% endif %}>11 класс</option>-->
+<!--                        <option value="10" {% if sort_by == '10' %}selected{% endif %}>10 класс</option>-->
+<!--                        <option value="9" {% if sort_by == '9' %}selected{% endif %}>9 класс</option>-->
+<!--                        <option value="10-" {% if sort_by == '10-' %}selected{% endif %}>10 класс и младше</option>-->
+<!--                        <option value="9-" {% if sort_by == '9-' %}selected{% endif %}>9 класс и младше</option>-->
+<!--                        <option value="8-" {% if sort_by == '8-' %}selected{% endif %}>8 класс и младше</option>-->
 <!--                    </select>-->
 <!--                </div>-->
 
-                <!-- Text Search block -->
-                <div class="col-span-1 md:col-span-4">
-                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Поисковый запрос</label>
-                    <input type="text" name="q1" value="{{ search_query }}" placeholder="Фёдоров Кирилл Евгениевич" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500 pl-3">
-                </div><!-- Text Search block -->
-                <div id='time' class="col-span-1 md:col-span-4">
-                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Время</label>
-                    <input type="text" name="q" value="{{ search_query }}" placeholder="0" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500 pl-3">
-                </div>
-
-                <!-- Sorting Criteria -->
-                <div class="col-span-1 md:col-span-3">
-                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Сортировка</label>
-                    <select name="sort" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="default" {% if sort_by == 'default' or not sort_by %}selected{% endif %}>Все участники</option>
-                        <option value="11" {% if sort_by == '11' %}selected{% endif %}>11 класс</option>
-                        <option value="10" {% if sort_by == '10' %}selected{% endif %}>10 класс</option>
-                        <option value="9" {% if sort_by == '9' %}selected{% endif %}>9 класс</option>
-                        <option value="10-" {% if sort_by == '10-' %}selected{% endif %}>10 класс и младше</option>
-                        <option value="9-" {% if sort_by == '9-' %}selected{% endif %}>9 класс и младше</option>
-                        <option value="8-" {% if sort_by == '8-' %}selected{% endif %}>8 класс и младше</option>
-                    </select>
-                </div>
-
-                <!-- Filter Action Keys -->
-                <div class="col-span-1 md:col-span-2 pt-5">
-                    <button id="submit" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none transition-colors shadow-sm">
-                        Применить
-                    </button>
-                </div>
-            </form>
-        </div>
+<!--                &lt;!&ndash; Filter Action Keys &ndash;&gt;-->
+<!--                <div class="col-span-1 md:col-span-2 pt-5">-->
+<!--                    <button id="submit" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none transition-colors shadow-sm">-->
+<!--                        Применить-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
 
         <!-- Product Grid Main section -->
         <div id="mt-8" class="mt-8">
