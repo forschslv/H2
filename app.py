@@ -4,7 +4,7 @@ import flask
 import pandas as pd
 import os
 path_to_data = 'data.csv'
-from init_data1 import get_data_by_time, render_table_by_df
+from init_data1 import get_data_by_time, render_table_by_df, render_table
 from statistics import get_stat_by_tt
 
 if os.path.exists(path_to_data):
