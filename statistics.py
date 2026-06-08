@@ -1,7 +1,7 @@
 from collections import Counter
 from typing import Literal
 
-from init_data1 import get_data_by_time
+from init_data1 import get_data_by_time, pd
 def get_stat_by_tt(tour, typee: Literal['winners', 'half-winners', 'all-winners', 'all', 'participants'] = 'all'):
     data = get_data_by_time(tour, 300)[["from", "sum"]]
     if typee == 'all':
@@ -40,6 +40,6 @@ def get_stat_by_tt(tour, typee: Literal['winners', 'half-winners', 'all-winners'
     else:
         print(f'\033[101m{tour= } | {typee= }\033[0m')
         stat = {}
-    return stat
+    return pd.DataFrame({i: [stat[i]] for i in stat})
 if __name__ == '__main__':
     print(get_stat_by_tt(1, 'all'))

@@ -4,7 +4,9 @@ import flask
 import pandas as pd
 import os
 path_to_data = 'data.csv'
-from init_data1 import get_data_by_time, render_table
+from init_data1 import get_data_by_time, render_table_by_df
+from statistics import get_stat_by_tt
+
 if os.path.exists(path_to_data):
     data = pd.read_csv(path_to_data)
 else:
@@ -69,7 +71,9 @@ def index():
     return flask.render_template("index.html")
 @app.route("/reg_rat")
 def reg_rat():
-    return flask.render_template("reg_rat.html")
+    args = flask.request.args
+    table = render_table_by_df(get_stat_by_tt(int((args.get('category', "Первый тур") == "Первый тур") or 2), args.get('stat', 'all')))
+    return flask.render_template('catalog1.html', products=table)
 APP_SETTINGS = {
     "site_name": "ХАКАТОН",
     "currency_symbol": "ERROR",

@@ -46,8 +46,8 @@ def get_data_by_time(tour, time):
     print(data)
     return data
 
-def render_table(tour, time):
-    data = get_data_by_time(tour, time)
+
+def render_table_by_df(data):
     table = '<table>'
     head = '<thead><tr>'
     cols = data.columns
@@ -65,4 +65,7 @@ def render_table(tour, time):
     body += '</tbody>'
     table += head + body + '</table>'
     return table
+def render_table_table(tour, time):
+    data = get_data_by_time(tour, time)
+    return render_table_by_df(data)
 # print(get_data_by_time(120))
