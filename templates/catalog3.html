@@ -88,18 +88,6 @@
                     </select>
                 </div>
                 <div class="col-span-1 md:col-span-3">
-                    <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Регионы</label>
-                    <select id="Regions" name="category" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <!--<option value="">Номер тура-->
-                        </option>
-                        {% for cat in ["Регионы сам сделай", "Окей?"] %}
-                            <option value="{{ cat }}" {% if active_category == cat %}selected{% endif %}>
-                                {{cat}}
-                            </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-span-1 md:col-span-3">
                     <label class="block text-xs font-semibold uppercase text-neutral-400 font-display mb-1">Момент времени</label>
                     <select id="Momentum" name="category" class="block w-full border-neutral-200 rounded-xl text-sm bg-neutral-50 py-2 focus:ring-indigo-500 focus:border-indigo-500">
                         <!--<option value="">Номер тура-->
