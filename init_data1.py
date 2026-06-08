@@ -141,7 +141,7 @@ def render_table_reg(typee: Literal['winners', 'half-winners', 'all-winners', 'a
 
 def render_table_stat_reg(data: dict):
     table = '<table>'
-    head = '<thead><tr><th>Место</th><th>Школа</th><th>Количество</th></tr></thead>'
+    head = '<thead><tr><th>Место</th><th>Школа</th><th>Регион</th><th>Количество</th></tr></thead>'
     body = '<tbody>'
     i = 1
     lasti = 1
@@ -154,9 +154,9 @@ def render_table_stat_reg(data: dict):
             last = v
             cnt = vls.count(v)
         if cnt <= 1:
-            row_html = f'<tr><td>{i}</td><td>{k}</td><td>{v}</td></tr>\n'
+            row_html = f'<tr><td>{i}</td><td>{k}</td><td>{"СПБ" if k in psch else "Москва"}</td><td>{v}</td></tr>\n'
         else:
-            row_html = f'<tr><td>{lasti}-{lasti + cnt - 1}</td><td>{k}</td><td>{v}</td></tr>\n'
+            row_html = f'<tr><td>{lasti}-{lasti + cnt - 1}</td><td>{k}</td><td>{"СПБ" if k in psch else "Москва"}</td><td>{v}</td></tr>\n'
         i += 1
         body += row_html
     body += '</tbody>'
