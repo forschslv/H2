@@ -71,7 +71,8 @@ def render_table(tour, time):
 # print(get_data_by_time(120))
 
 
-moscow = pd.read_csv("Материалы/Результаты регионального этапа в Москве.csv")
-piter = pd.read_csv("Материалы/Результаты регионального этапа в Санкт-Петербурге.csv")
+moscow = pd.read_csv("Материалы/Результаты регионального этапа в Москве.csv", encoding = 'windows-1251')
+piter = pd.read_csv("Материалы/Результаты регионального этапа в Санкт-Петербурге.csv", encoding = 'windows-1251')
 def get_school(fio):
     ...
+print(moscow)
