@@ -76,9 +76,18 @@ def render_table(tour, time):
 
 moscow = pd.read_csv("Материалы/Результаты регионального этапа в Москве.csv", sep=';', encoding = 'windows-1251')
 piter = pd.read_csv("Материалы/Результаты регионального этапа в Санкт-Петербурге.csv", sep=';', encoding = 'windows-1251')
+
+psch = []
+for _, i in piter[['Участник']].iterrows():
+    qweq = str(i["Участник"])
+    qweq = qweq[qweq.find('(') + 1: qweq.find(')')]
+    qweq = qweq[:qweq.rfind(',')]
+    psch.append(qweq)
 def render_table_reg(typee: Literal['winners', 'half-winners', 'all-winners', 'all', 'participants']):
     print(typee)
-    data = moscow[["Школа"]]
+    data = pd.concat([moscow[["Школа"]],
+                      pd.DataFrame({"Школа": psch})],
+                         axis=0)
 
     if typee == 'all':
         stat = dict(Counter(data['Школа'].to_list()))
@@ -128,6 +137,8 @@ def render_table_reg(typee: Literal['winners', 'half-winners', 'all-winners', 'a
     return stat
 
 
+
+
 def render_table_stat_reg(data: dict):
     table = '<table>'
     head = '<thead><tr><th>Место</th><th>Регион</th><th>Количество</th></tr></thead>'
@@ -153,3 +164,4 @@ def render_table_stat_reg(data: dict):
     return table
 
 print(moscow.columns)
+print(piter.columns)
