@@ -73,7 +73,7 @@ def index():
 def reg_rat():
     args = flask.request.args
     table = render_table_stat(get_stat_by_tt(int((args.get('category', "Первый тур") == "Первый тур") or 2), args.get('stat', 'all')))
-    return flask.render_template('catalog1.html', products=table)
+    return flask.render_template('reg_rat.html', products=table)
 APP_SETTINGS = {
     "site_name": "ХАКАТОН",
     "currency_symbol": "ERROR",
@@ -82,18 +82,18 @@ APP_SETTINGS = {
 def inject_settings():
     return dict(cfg=APP_SETTINGS)
 
-@app.route('/catalog1')
-def catalog1():
+@app.route('/reg_rat')
+def reg_rat():
     args = flask.request.args
     try:
         table = render_table(int((args.get('category', "Первый тур") == "Первый тур") or 2), int(args.get('q', 0)))
-        return flask.render_template('catalog1.html', products = table)
+        return flask.render_template('reg_rat.html', products = table)
     except Exception as e:
         print(repr(e))
         text = ''
         if e.__class__ == FileNotFoundError:
             text = "Неверное время тура"
-        return flask.render_template('catalog1.html', products = f"""
+        return flask.render_template('reg_rat.html', products = f"""
         <!-- Empty search catalog fallback state -->
                 <div class="text-center py-20 bg-white rounded-2xl border border-neutral-200 shadow-sm max-w-md mx-auto mt-10">
                     <svg class="mx-auto h-12 w-12 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
