@@ -2,44 +2,55 @@ from collections import Counter
 from typing import Literal
 
 from init_data1 import get_data_by_time, pd
-def get_stat_by_tt(tour, typee: Literal['winners', 'half-winners', 'all-winners', 'all', 'participants'] = 'all'):
+def get_stat_by_tt(tour, typee: Literal['winners', 'half-winners', 'all-winners', 'all', 'participants']):
+    print(tour)
+    print(typee)
     data = get_data_by_time(tour, 300)[["from", "sum"]]
     if typee == 'all':
         stat = dict(Counter(data['from'].to_list()))
     elif typee == 'winners':
         idxmax = int(len(data) * 0.08)
         stat = {}
+        cnt = 1
         for idx, i in data.iterrows():
-            if idx > idxmax:
+            if cnt > idxmax:
                 break
+            cnt += 1
             stat[i['from']] = stat.get(i['from'], 0) + 1
     elif typee == 'all-winners':
         idxmax = int(len(data) * 0.45)
         stat = {}
+        cnt = 1
         for idx, i in data.iterrows():
-            if idx > idxmax:
+            if cnt > idxmax:
                 break
+            cnt += 1
             stat[i['from']] = stat.get(i['from'], 0) + 1
     elif typee == 'half-winners':
         idxskip = int(len(data) * 0.08)
         idxmax = int(len(data) * 0.45)
         stat = {}
+        cnt = 0
         for idx, i in data.iterrows():
-            if idx > idxmax:
+            cnt += 1
+            if cnt > idxmax:
                 break
-            if idx <= idxskip:
+            if cnt <= idxskip:
                 continue
             stat[i['from']] = stat.get(i['from'], 0) + 1
     elif typee == 'participants':
+        cnt = 0
         idxskip = int(len(data) * 0.45)
         stat = {}
         for idx, i in data.iterrows():
-            if idx <= idxskip:
+            cnt += 1
+            if cnt <= idxskip:
                 continue
             stat[i['from']] = stat.get(i['from'], 0) + 1
     else:
         print(f'\033[101m{tour= } | {typee= }\033[0m')
         stat = {}
+    print(stat)
     return stat
 
 def render_table_stat(data: dict):
@@ -55,4 +66,4 @@ def render_table_stat(data: dict):
     table += head + body + '</table>'
     return table
 if __name__ == '__main__':
-    print(get_stat_by_tt(1, 'all'))
+    print(get_stat_by_tt(1, 'half-winners'))
