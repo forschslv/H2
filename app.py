@@ -4,7 +4,7 @@ import flask
 import pandas as pd
 import os
 path_to_data = 'data.csv'
-from init_data1 import get_data_by_time, render_table_by_df, render_table, render_table_reg
+from init_data1 import get_data_by_time, render_table_by_df, render_table, render_table_reg, render_table_stat_reg
 from statistics import get_stat_by_tt, render_table_stat
 
 if os.path.exists(path_to_data):
@@ -85,7 +85,7 @@ def inject_settings():
 @app.route('/catalog2')
 def catalog2():
     args = flask.request.args
-    table = render_table_reg(args.get('stat', 'all'))
+    table = render_table_stat_reg(render_table_reg(args.get('stat', 'all')))
     return flask.render_template('catalog2.html', products=table)
 
 @app.route('/catalog3')
