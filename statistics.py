@@ -58,8 +58,19 @@ def render_table_stat(data: dict):
     head = '<thead><tr><th>Место</th><th>Регион</th><th>Количество</th></tr></thead>'
     body = '<tbody>'
     i = 1
-    for k,v in sorted(data.items(), key=lambda x: (-x[1], x[0])):
-        row_html = f'<tr><td>{i}</td><td>{k}</td><td>{v}</td></tr>\n'
+    lasti = 1
+    last = 0
+    vls = tuple(data.values())
+    cnt = 0
+    for k, v in sorted(data.items(), key=lambda x: (-x[1], x[0])):
+        if last != v:
+            lasti = i
+            last = v
+            cnt = vls.count(v)
+        if cnt <= 1:
+            row_html = f'<tr><td>{i}</td><td>{k}</td><td>{v}</td></tr>\n'
+        else:
+            row_html = f'<tr><td>{lasti}-{lasti + cnt - 1}</td><td>{k}</td><td>{v}</td></tr>\n'
         i += 1
         body += row_html
     body += '</tbody>'
