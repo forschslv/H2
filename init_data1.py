@@ -141,7 +141,7 @@ def render_table_reg(typee: Literal['winners', 'half-winners', 'all-winners', 'a
 
 def render_table_stat_reg(data: dict):
     table = '<table>'
-    head = '<thead><tr><th>Место</th><th>Регион</th><th>Количество</th></tr></thead>'
+    head = '<thead><tr><th>Место</th><th>Школа</th><th>Количество</th></tr></thead>'
     body = '<tbody>'
     i = 1
     lasti = 1
