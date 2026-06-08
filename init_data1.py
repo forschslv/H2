@@ -85,9 +85,56 @@ for _, i in piter[['Участник']].iterrows():
     psch.append(qweq)
 def render_table_reg(typee: Literal['winners', 'half-winners', 'all-winners', 'all', 'participants']):
     print(typee)
-    data = pd.concat([moscow[["Школа"]],
-                      pd.DataFrame({"Школа": psch})],
-                         axis=0)
+    data = moscow[["Школа"]]
+
+    if typee == 'all':
+        stat = dict(Counter(data['Школа'].to_list()))
+    elif typee == 'winners':
+        idxmax = int(len(data) * 0.08)
+        stat = {}
+        cnt = 1
+        for idx, i in data.iterrows():
+            if cnt > idxmax:
+                break
+            cnt += 1
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    elif typee == 'all-winners':
+        idxmax = int(len(data) * 0.45)
+        stat = {}
+        cnt = 1
+        for idx, i in data.iterrows():
+            if cnt > idxmax:
+                break
+            cnt += 1
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    elif typee == 'half-winners':
+        idxskip = int(len(data) * 0.08)
+        idxmax = int(len(data) * 0.45)
+        stat = {}
+        cnt = 0
+        for idx, i in data.iterrows():
+            cnt += 1
+            if cnt > idxmax:
+                break
+            if cnt <= idxskip:
+                continue
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    elif typee == 'participants':
+        cnt = 0
+        idxskip = int(len(data) * 0.45)
+        stat = {}
+        for idx, i in data.iterrows():
+            cnt += 1
+            if cnt <= idxskip:
+                continue
+            stat[i['Школа']] = stat.get(i['Школа'], 0) + 1
+    else:
+        print(f'\033[101m{typee= }\033[0m')
+        stat = {}
+    stat1 = stat.copy()
+    print(stat)
+
+    data = pd.DataFrame({"Школа": psch})
 
     if typee == 'all':
         stat = dict(Counter(data['Школа'].to_list()))
@@ -134,7 +181,8 @@ def render_table_reg(typee: Literal['winners', 'half-winners', 'all-winners', 'a
         print(f'\033[101m{typee= }\033[0m')
         stat = {}
     print(stat)
-    return stat
+
+    return stat | stat1
 
 
 
