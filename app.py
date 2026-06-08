@@ -108,7 +108,7 @@ def catalog3():
                     <h3 class="mt-2 text-sm font-semibold text-neutral-900">Ничего не найдено</h3>
                     <p class="mt-1 text-xs text-neutral-500">По вашему запросу во встроенной базе данных данных не обнаружено ({text}).</p>
                     <div class="mt-6">
-                        <a href="http://127.0.0.1:5000/catalog?" class="inline-flex items-center px-4 py-2 border border-transparent text-xs font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm">
+                        <a href="http://127.0.0.1:5000/catalog3?" class="inline-flex items-center px-4 py-2 border border-transparent text-xs font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm">
                             Сбросить фильтры
                         </a>
                     </div>
