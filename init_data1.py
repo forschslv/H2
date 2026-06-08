@@ -4,8 +4,10 @@ from bs4 import BeautifulSoup
 def raisee(e: BaseException):
     raise e
 def get_data_by_time(tour, time):
-    data = pd.DataFrame(columns=['place', 'name', 'from', 'class', '1', '2', '3', '4', 'sum'])
-
+    if tour == 1:
+        data = pd.DataFrame(columns=['place', 'name', 'from', 'class', '1', '2', '3', '4', 'sum'])
+    else:
+        data = pd.DataFrame(columns=['place', 'name', 'from', 'class', '1', '2', '3', '4', '5', '6', '7', '8', 'sum'])
     with open(f"Материалы/{'Первый тур' if tour == 1 else ('Второй тур' if tour == 2 else raisee(ValueError('tour should be 1 or 2')))}/{time}.html") as f:
         text = f.read()
     soup = BeautifulSoup(text, 'html.parser')
@@ -36,10 +38,7 @@ def get_data_by_time(tour, time):
                'name': [name],
                'from': [from_],
                'class': [class_],
-               '1': [zad[0]],
-               '2': [zad[1]],
-               '3': [zad[2]],
-               '4': [zad[3]],
+               **{str(i1 + 1): zad[i1] for i1 in range(len(zad))},
                'sum': [sm]}
         data = pd.concat([data,
                           pd.DataFrame(row)],
